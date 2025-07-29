@@ -91,17 +91,7 @@ The `amorphie.config.json` file contains domain-specific configuration:
 {
   "domain": "{domainName}",
   "version": "1.0.0",
-  "validation": {
-    "enabled": true,
-    "strict": true,
-    "rules": {
-      "filename-consistency": true,
-      "version-consistency": true,
-      "business-rules": true,
-      "domain-validation": true,
-      "schema-validation": true
-    }
-  },
+  "runtimeVersion": "1.0.0",
   "paths": {
     "workflows": "{domainName}/Workflows",
     "functions": "{domainName}/Functions", 
@@ -109,14 +99,6 @@ The `amorphie.config.json` file contains domain-specific configuration:
     "extensions": "{domainName}/Extensions",
     "schemas": "{domainName}/Schemas",
     "tasks": "{domainName}/Tasks"
-  },
-  "linting": {
-    "include": ["{domainName}/**/*.json"],
-    "exclude": ["node_modules/**", ".vscode/**"],
-    "rules": {
-      "required-fields": ["key", "domain"],
-      "version-format": "semantic"
-    }
   }
 }
 ```
@@ -197,119 +179,6 @@ schema-customer-profile.1.0.0.json
 task-daily-report-generator.1.0.0.json
 ```
 
-## 🎨 VSCode Integration
-
-### Code Snippets (`amorphie.code-snippets`)
-
-The project includes comprehensive code snippets for rapid development:
-
-#### Available Snippets:
-- **`workflow-basic`**: Basic workflow structure
-- **`instance-basic`**: Instance definition
-- **`view-def`**: View component
-- **`extension-def`**: Extension definition
-- **`schema-def`**: Schema definition
-- **`state-*`**: All state types
-- **`transition-*`**: All transition types
-- **`task-*`**: All task types
-
-#### Usage:
-1. Open a `.json` file in the domain directory
-2. Press `Tab` to expand
-3. Fill in the template variables
-
-### VSCode Tasks (`tasks.json`)
-
-The project includes custom tasks for development automation:
-
-#### Validation Tasks:
-- **Validate Component**: Validate the currently open component
-- **Validate All Components**: Validate all components in the domain
-- **Lint All Components**: Lint all domain components
-
-#### CSX Workflow Tasks:
-- **Update Current CSX**: Update CSX rules for current workflow
-- **Update All CSX**: Batch update all workflow CSX rules
-- **Watch CSX Changes**: Watch for CSX file changes and auto-update
-- **Create Mapping CSX**: Create new CSX mapping file
-- **Create Rule CSX**: Create new CSX rule file
-
-### Workspace Settings
-
-The `.vscode/settings.json` includes:
-- JSON schema associations for component validation
-- File associations for syntax highlighting
-- IntelliSense configuration for domain-specific completions
-- Auto-formatting rules
-- File watcher configurations
-
-## 📜 Available Scripts
-
-### Development Scripts
-```bash
-# Run all tests
-npm test
-```
-
-### Validation & Linting
-```bash
-# Validate all components
-npm run validate
-
-# Lint all components
-npm run lint
-```
-
-## ✅ Validation & Linting
-
-### Validation Rules
-
-The project enforces these validation rules:
-
-#### 1. Filename Consistency
-- Filename must include the component's `key` field
-- Files must follow naming conventions
-
-#### 2. Version Consistency
-- Version must follow semantic versioning (x.y.z)
-- Version must be consistent across related components
-
-#### 3. Business Rules
-- Required fields: `key`, `domain`
-- Domain must match project domain
-- Component type must be valid
-
-#### 4. Domain Validation
-- All components must belong to the correct domain
-- Domain-specific business rules are enforced
-
-#### 5. Schema Validation
-- JSON structure must match component schema
-- All required properties must be present
-- Data types must be correct
-
-### Linting Rules
-
-The linter checks for:
-- JSON syntax errors
-- Schema compliance
-- Naming convention adherence
-- Required field presence
-- Cross-component consistency
-
-### Running Validation
-
-```bash
-# Validate single file
-node .vscode/scripts/validate-component.js path/to/file.json {domainName}
-
-# Validate all components
-npm run validate
-
-# Lint components
-npm run lint
-```
-
 ## 📏 Best Practices
 
 ### Component Design
@@ -337,31 +206,6 @@ npm run lint
 2. **Batch Operations**: Use batch scripts for multiple component updates
 3. **Watch Mode**: Use file watching for automatic updates
 4. **Caching**: Leverage validation caching for faster development
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-#### Validation Failures
-```bash
-# Check schema errors
-npm run validate
-
-# Validate specific file
-node .vscode/scripts/validate-component.js path/to/file.json {domainName}
-```
-
-#### Linting Errors
-```bash
-# Check specific issues
-npm run lint
-```
-
-### Getting Help
-- Check component schemas in `.vscode/schemas/`
-- Review validation output for specific errors
-- Use VSCode IntelliSense for auto-completion
-- Refer to snippet examples in `.vscode/amorphie.code-snippets`
 
 ## 📚 Learn More
 
